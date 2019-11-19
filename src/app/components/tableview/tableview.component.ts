@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 interface Student {
   id?: number;
   name: string;
@@ -11,159 +12,179 @@ interface Student {
 
 const STUDENTS: Student[] = [
   {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
-  }, {
-    name: 'Abhishek Lokhande',
-    city: 'Amravati',
-    degree: 'M. Tech',
-    adress: 'Kothrud',
-    state: 'MH',
+  },
+  {
+    name: "Abhishek Lokhande",
+    city: "Amravati",
+    degree: "M. Tech",
+    adress: "Kothrud",
+    state: "MH",
     zip: 444333
   }
 ];
 
 @Component({
-  selector: 'app-tableview',
-  templateUrl: './tableview.component.html',
-  styleUrls: ['./tableview.component.css']
+  selector: "app-tableview",
+  templateUrl: "./tableview.component.html",
+  styleUrls: ["./tableview.component.css"]
 })
 export class TableviewComponent {
   page = 1;
@@ -171,11 +192,15 @@ export class TableviewComponent {
   collectionSize = STUDENTS.length;
 
   get students(): Student[] {
-    return STUDENTS
-      .map((country, i) => ({ id: i + 1, ...country }))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    return STUDENTS.map((country, i) => ({ id: i + 1, ...country })).slice(
+      (this.page - 1) * this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize
+    );
   }
-  constructor() {
+  constructor(private _router: Router) {}
 
+  logout() {
+    localStorage.removeItem("token");
+    this._router.navigate(["/"]);
   }
 }
