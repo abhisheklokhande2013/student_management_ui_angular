@@ -1,0 +1,16 @@
+.container-studentform{
+    width: 50%;
+    padding-top: 5%;
+}
+
+@media only screen and (max-width: 768px){
+    .container-studentform{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    .container-studentform{
+        width: 100%;
+    }
+}

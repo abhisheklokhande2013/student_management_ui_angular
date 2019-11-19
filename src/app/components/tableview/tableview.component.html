@@ -1,0 +1,34 @@
+<div class="container-fluid container-table">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Degree</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+    <tbody class="container-data-table">
+      <tr *ngFor="let student of students">
+        <th scope="row">{{ student.id }}</th>
+        <td>
+          {{ student.name }}
+        </td>
+        <td>{{ student.degree}}</td>
+        <td>{{ student.city }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+
+    <!-- <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select> -->
+  </div>
+</div>
