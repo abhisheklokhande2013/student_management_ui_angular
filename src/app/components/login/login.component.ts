@@ -1,37 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { StudentService } from '../../services/student.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { Validators } from "@angular/forms";
+import { UserAuthenticationService } from "../../services/user.authentication.service";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   submitted = false;
   user: any;
+  loginError = false;
 
-  constructor(private _myservice: StudentService,
+  constructor(
+    private _myservice: UserAuthenticationService,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) { }
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required)
     });
   }
 
-  get f(){
+  get f() {
     return this.loginForm.controls;
   }
 
   onSubmit(data) {
-    
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
@@ -40,17 +41,22 @@ export class LoginComponent implements OnInit {
       this.user = {
         email: data.username,
         password: data.password
-      }
+      };
 
-      this._myservice.login(this.user)
-        .subscribe(
-          data => {
-            //console.log(data.data.token);
-            localStorage.setItem('token', data.data.token);
-            this._router.navigate(['/dash']);
-          },
-          error => { }
-        );
+      this._myservice.login(this.user).subscribe(
+        data => {
+          if (data.status === "success") {
+            localStorage.setItem("token", data.data.token);
+            this._router.navigate(["/dash"]);
+          } else {
+            this.loginError = true;
+            console.log(data.message);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 }
