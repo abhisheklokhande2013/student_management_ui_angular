@@ -8,15 +8,17 @@
         <th scope="col">Roll No</th>
         <th scope="col">Degree</th>
         <th scope="col">City</th>
+        <th></th>
       </tr>
     </thead>
     <tbody class="container-data-table">
       <tr *ngFor="let student of studentService.students;let i = index">
         <th scope="row">{{i+1}}</th>
-        <td> {{ student.name }} </td>
-        <td> {{ student.roll_no }}</td>
-        <td>{{ student.degree}}</td>
-        <td>{{ student.city }}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.roll_no}}</td>
+        <td>{{student.degree}}</td>
+        <td>{{student.city}}</td>
+        <td>  <button (click)="deleteStudent(student)" class="btn btn-primary">Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -13,18 +13,10 @@ export class TableviewComponent implements OnInit {
   pageSize = 10;
   collectionSize = 0;
 
-  // get students(): Student[] {
-  //   return STUDENTS.map((country, i) => ({ id: i + 1, ...country })).slice(
-  //     (this.page - 1) * this.pageSize,
-  //     (this.page - 1) * this.pageSize + this.pageSize
-  //   );
-  // }
-
   constructor(private _router: Router, public studentService: StudentService) {}
 
   ngOnInit() {
     this.refreshStudentsList();
-    // this.collectionSize = this.studentService.students.length;
   }
 
   refreshStudentsList() {
@@ -32,6 +24,7 @@ export class TableviewComponent implements OnInit {
       (res: StudentData[]) => {
         // console.log(res);
         this.studentService.students = res;
+        this.collectionSize = this.studentService.students.length;
       },
       error => {
         return console.log(error);
@@ -39,6 +32,18 @@ export class TableviewComponent implements OnInit {
     );
   }
 
+  deleteStudent(student: StudentData): void {
+    if (confirm("Are you sure to delete this record ?") === true) {
+      this.studentService.deleteStudent(student._id).subscribe(
+        res => {
+          this.refreshStudentsList();
+        },
+        error => {
+          return console.log(error);
+        }
+      );
+    }
+  }
   logout() {
     localStorage.removeItem("token");
     this._router.navigate(["/"]);

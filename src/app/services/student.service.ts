@@ -18,4 +18,8 @@ export class StudentService {
   getStudents() {
     return this.http.get<StudentData[]>(this.endpoint + "/");
   }
+
+  deleteStudent(id: string){
+    return this.http.delete(this.endpoint + '/remove/' + id);
+  }
 }
