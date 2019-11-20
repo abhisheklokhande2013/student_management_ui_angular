@@ -5,16 +5,16 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col">Roll No</th>
         <th scope="col">Degree</th>
         <th scope="col">City</th>
       </tr>
     </thead>
     <tbody class="container-data-table">
-      <tr *ngFor="let student of students">
-        <th scope="row">{{ student.id }}</th>
-        <td>
-          {{ student.name }}
-        </td>
+      <tr *ngFor="let student of studentService.students;let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td> {{ student.name }} </td>
+        <td> {{ student.roll_no }}</td>
         <td>{{ student.degree}}</td>
         <td>{{ student.city }}</td>
       </tr>

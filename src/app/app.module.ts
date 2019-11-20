@@ -10,6 +10,8 @@ import { StudentformComponent } from "./components/studentform/studentform.compo
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
 import { JwtModuleOptions, JwtModule } from "@auth0/angular-jwt";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptor } from "./services/token.interceptor";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -38,7 +40,13 @@ const JWT_Module_Options: JwtModuleOptions = {
     NgbModule,
     JwtModule.forRoot(JWT_Module_Options)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
