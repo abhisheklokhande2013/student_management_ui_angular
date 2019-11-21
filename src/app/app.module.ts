@@ -12,6 +12,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { JwtModuleOptions, JwtModule } from "@auth0/angular-jwt";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./services/token.interceptor";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -38,7 +40,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    JwtModule.forRoot(JWT_Module_Options)
+    JwtModule.forRoot(JWT_Module_Options),
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
     {

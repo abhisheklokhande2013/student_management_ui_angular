@@ -9,11 +9,15 @@ import { StudentData } from "../../models/student.model";
   styleUrls: ["./tableview.component.css"]
 })
 export class TableviewComponent implements OnInit {
-  page = 1;
-  pageSize = 10;
-  collectionSize = 0;
+  config: any;
 
-  constructor(private _router: Router, public studentService: StudentService) {}
+  constructor(private _router: Router, public studentService: StudentService) {
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+      totalItems: 0
+    };
+  }
 
   ngOnInit() {
     this.refreshStudentsList();
@@ -24,7 +28,7 @@ export class TableviewComponent implements OnInit {
       (res: StudentData[]) => {
         // console.log(res);
         this.studentService.students = res;
-        this.collectionSize = this.studentService.students.length;
+        this.config.totalItems = this.studentService.students.length;
       },
       error => {
         return console.log(error);
@@ -36,6 +40,7 @@ export class TableviewComponent implements OnInit {
     if (confirm("Are you sure to delete this record ?") === true) {
       this.studentService.deleteStudent(student._id).subscribe(
         res => {
+          console.log(res);
           this.refreshStudentsList();
         },
         error => {
@@ -44,6 +49,11 @@ export class TableviewComponent implements OnInit {
       );
     }
   }
+
+  pageChanged(event) {
+    this.config.currentPage = event;
+  }
+
   logout() {
     localStorage.removeItem("token");
     this._router.navigate(["/"]);
