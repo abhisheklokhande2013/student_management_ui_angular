@@ -33,7 +33,7 @@ export class StudentService {
 
   getStudent(): StudentData{
     this.temp = {_id: this.student._id,roll_no: this.student.roll_no, name: this.student.name, 
-    address: 'Pune', degree:this.student.degree,city: this.student.city, state: "MH",zip:'1111'};
+    address: '', degree:this.student.degree,city: this.student.city, state: "Choose...",zip:''};
     this.student = this.temp;
     return this.student;
   }

@@ -62,7 +62,7 @@ export class TableviewComponent implements OnInit {
 
   openLg(content) {
     this.studentService.setStudent({_id: '',roll_no: '', name: '', 
-    address: '', degree:'',city: '', state: "",zip:''});
+    address: '', degree:'',city: '', state: '',zip:''});
     this.modalService.open(content, { size: 'lg' });
   }
 
