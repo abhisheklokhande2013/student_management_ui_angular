@@ -1,5 +1,6 @@
 <div class="container-fluid container-table">
   <input type="text" id="searchField" placeholder="Search" [(ngModel)]="searchText" />
+  <button (click)="openLg(content)" class="btn btn-secondary" style="margin: 10px;">Add</button>
   <button (click)="logout()" class="btn btn-primary" style="float: right; margin: 10px;">Logout</button>
   <table class="table table-striped">
     <thead>
@@ -19,9 +20,26 @@
         <td>{{student.roll_no}}</td>
         <td>{{student.degree}}</td>
         <td>{{student.city}}</td>
-        <td> <button (click)="deleteStudent(student)" class="btn btn-primary">Delete</button></td>
+        <td> <button (click)="editStudent(content, student)" class="btn btn-secondary">Edit</button></td>
+        <td> <button (click)="deleteStudent(student)" class="btn btn-danger">Delete</button></td>
       </tr>
     </tbody>
   </table>
   <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Student's Form</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <p>One fine body&hellip;</p> -->
+    <app-studentform></app-studentform>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

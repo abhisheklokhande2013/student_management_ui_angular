@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { StudentService } from "../../services/student.service";
 import { StudentData } from "../../models/student.model";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-tableview",
@@ -11,7 +12,7 @@ import { StudentData } from "../../models/student.model";
 export class TableviewComponent implements OnInit {
   config: any;
 
-  constructor(private _router: Router, public studentService: StudentService) {
+  constructor(private _router: Router, public studentService: StudentService, private modalService: NgbModal) {
     this.config = {
       itemsPerPage: 10,
       currentPage: 1,
@@ -58,4 +59,17 @@ export class TableviewComponent implements OnInit {
     localStorage.removeItem("token");
     this._router.navigate(["/"]);
   }
+
+  openLg(content) {
+    this.studentService.setStudent({_id: '',roll_no: '', name: '', 
+    address: '', degree:'',city: '', state: "",zip:''});
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+  editStudent(content, student){
+    this.studentService.setStudent(student);
+    //console.log(student);
+    this.modalService.open(content, { size: 'lg' });
+  }
+
 }

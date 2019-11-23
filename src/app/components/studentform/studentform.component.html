@@ -3,40 +3,49 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="rollnum">Roll Number</label>
-        <input type="text" class="form-control" id="rollnum" placeholder="Roll Number"
-          [ngClass]="{ 'is-invalid': submitted && f.rollno.errors }">
-        <div *ngIf="submitted && f.rollno.errors" class="invalid-feedback">
-          <div *ngIf="f.rollno.errors.required">Roll Number is required</div>
+        <input type="text" class="form-control" id="rollnum" placeholder="Roll Number" formControlName="roll_no"
+          [ngClass]="{ 'is-invalid': submitted && f.roll_no.errors }">
+        <div *ngIf="submitted && f.roll_no.errors" class="invalid-feedback">
+          <div *ngIf="f.roll_no.errors.required">Roll Number is required</div>
         </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="studentname">Student's Name</label>
-        <input type="text" class="form-control" id="studentname" placeholder="Student's Name">
+        <label for="name">Student's Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Student's Name"
+          formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">Student Name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="studentdegree">Degree</label>
+      <input type="text" class="form-control" id="studentdegree" placeholder="B.E., B.A. etc"
+        formControlName="degree" [ngClass]="{ 'is-invalid': submitted && f.degree.errors }">
+      <div *ngIf="submitted && f.degree.errors" class="invalid-feedback">
+        <div *ngIf="f.degree.errors.required">Degree is required</div>
       </div>
     </div>
     <div class="form-group">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="form-group">
-      <label for="studentdegree">Degree</label>
-      <input type="text" class="form-control" id="studentdegree" placeholder="B.E., B.A. etc">
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity">
+        <input type="text" class="form-control" id="inputCity" formControlName="city">
       </div>
       <div class="form-group col-md-4">
         <label for="inputState">State</label>
-        <select id="inputState" class="form-control">
+        <select id="inputState" class="form-control" formControlName="state">
           <option selected>Choose...</option>
           <option>...</option>
+          <option>MH</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
+        <input type="text" class="form-control" id="inputZip" formControlName="zip">
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

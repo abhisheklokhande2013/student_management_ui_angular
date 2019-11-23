@@ -9,6 +9,10 @@ export class StudentService {
   endpoint = "http://localhost:8080/students";
   students: StudentData[];
   selectedStudent: StudentData;
+  student: StudentData;
+  temp:StudentData = {_id: '1',roll_no: '123', name: 'Vivek', 
+  address: 'Pune', degree:'BE',city: 'Amt', state: "MH",zip:'1111'};
+
   constructor(private http: HttpClient) {}
 
   public getToken(): string {
@@ -22,4 +26,16 @@ export class StudentService {
   deleteStudent(id: string){
     return this.http.delete(this.endpoint + '/remove/' + id);
   }
+
+  setStudent(student: StudentData){
+    this.student = student;
+  }
+
+  getStudent(): StudentData{
+    this.temp = {_id: this.student._id,roll_no: this.student.roll_no, name: this.student.name, 
+    address: 'Pune', degree:this.student.degree,city: this.student.city, state: "MH",zip:'1111'};
+    this.student = this.temp;
+    return this.student;
+  }
+
 }
