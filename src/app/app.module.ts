@@ -7,13 +7,13 @@ import { LoginComponent } from "./components/login/login.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { TableviewComponent } from "./components/tableview/tableview.component";
 import { StudentformComponent } from "./components/studentform/studentform.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
 import { JwtModuleOptions, JwtModule } from "@auth0/angular-jwt";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./services/token.interceptor";
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
   return localStorage.getItem("token");

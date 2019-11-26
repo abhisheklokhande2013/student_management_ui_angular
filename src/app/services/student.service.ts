@@ -10,32 +10,25 @@ export class StudentService {
   students: StudentData[];
   selectedStudent: StudentData;
   student: StudentData;
-  temp:StudentData = {_id: '1',roll_no: '123', name: 'Vivek', 
-  address: 'Pune', degree:'BE',city: 'Amt', state: "MH",zip:'1111'};
 
   constructor(private http: HttpClient) {}
 
   public getToken(): string {
     return localStorage.getItem("token");
   }
-  
+
   getStudents() {
     return this.http.get<StudentData[]>(this.endpoint + "/");
   }
 
-  deleteStudent(id: string){
-    return this.http.delete(this.endpoint + '/remove/' + id);
+  deleteStudent(id: string) {
+    return this.http.delete(this.endpoint + "/remove/" + id);
   }
 
-  setStudent(student: StudentData){
-    this.student = student;
+  createStudent(data: StudentData) {
+    return this.http.post(this.endpoint + "/", data);
   }
-
-  getStudent(): StudentData{
-    this.temp = {_id: this.student._id,roll_no: this.student.roll_no, name: this.student.name, 
-    address: '', degree:this.student.degree,city: this.student.city, state: "Choose...",zip:''};
-    this.student = this.temp;
-    return this.student;
+  updateStudent(data: StudentData) {
+    return this.http.put(this.endpoint + "/update/" + data._id, data);
   }
-
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { StudentService } from "../../services/student.service";
 import { StudentData } from "../../models/student.model";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-tableview",
@@ -12,7 +12,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class TableviewComponent implements OnInit {
   config: any;
 
-  constructor(private _router: Router, public studentService: StudentService, private modalService: NgbModal) {
+  constructor(
+    private _router: Router,
+    public studentService: StudentService,
+    private modalService: NgbModal
+  ) {
     this.config = {
       itemsPerPage: 10,
       currentPage: 1,
@@ -24,7 +28,7 @@ export class TableviewComponent implements OnInit {
     this.refreshStudentsList();
   }
 
-  refreshStudentsList() {
+  public refreshStudentsList() {
     this.studentService.getStudents().subscribe(
       (res: StudentData[]) => {
         // console.log(res);
@@ -61,15 +65,29 @@ export class TableviewComponent implements OnInit {
   }
 
   openLg(content) {
-    this.studentService.setStudent({_id: '',roll_no: '', name: '', 
-    address: '', degree:'',city: '', state: '',zip:''});
-    this.modalService.open(content, { size: 'lg' });
+    this.resetSelectedStudent();
+    this.modalService.open(content, { size: "lg" });
   }
 
-  editStudent(content, student){
-    this.studentService.setStudent(student);
+  editStudent(content, student: StudentData) {
     //console.log(student);
-    this.modalService.open(content, { size: 'lg' });
+    this.resetSelectedStudent();
+    this.studentService.selectedStudent._id = student._id;
+    this.studentService.selectedStudent.city = student.city;
+    this.studentService.selectedStudent.name = student.name;
+    this.studentService.selectedStudent.roll_no = student.roll_no;
+    this.studentService.selectedStudent.degree = student.degree;
+
+    this.modalService.open(content, { size: "lg" });
   }
 
+  resetSelectedStudent() {
+    this.studentService.selectedStudent = {
+      _id: "",
+      name: "",
+      roll_no: "",
+      city: "",
+      degree: ""
+    };
+  }
 }

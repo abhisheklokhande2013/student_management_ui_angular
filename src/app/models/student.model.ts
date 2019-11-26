@@ -4,7 +4,4 @@ export class StudentData {
   roll_no: string;
   degree: string;
   city: string;
-  address: string;
-  zip: string;
-  state: string;
 }

@@ -1,5 +1,5 @@
 <div class="container-fluid container-studentform">
-  <form [formGroup]="studentForm" action="" method="" (ngSubmit)="onSubmit()">
+  <form [formGroup]="studentForm" action="" method="" (ngSubmit)="onSubmit(studentForm.value)">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="rollnum">Roll Number</label>
@@ -26,28 +26,14 @@
         <div *ngIf="f.degree.errors.required">Degree is required</div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
-    </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputCity">City</label>
         <input type="text" class="form-control" id="inputCity" formControlName="city" placeholder="City">
       </div>
-      <div class="form-group col-md-4">
-        <label for="inputState">State</label>
-        <select id="inputState" class="form-control" formControlName="state">
-          <option selected>Choose...</option>
-          <option>...</option>
-          <option>MH</option>
-        </select>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip" formControlName="zip">
-      </div>
+      
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <div [hidden]="!StudentFormError" style="color:red">{{error}}</div>
   </form>
 </div>
