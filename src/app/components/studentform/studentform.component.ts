@@ -3,8 +3,9 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { StudentService } from "src/app/services/student.service";
 import { StudentData } from "../../models/student.model";
-import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { TableviewComponent } from "../tableview/tableview.component";
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-studentform",
@@ -20,7 +21,8 @@ export class StudentformComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private modalService: NgbModal,
-    private parent: TableviewComponent
+    private parent: TableviewComponent,
+    private toastr: NotificationService
   ) {}
 
   ngOnInit() {
@@ -54,23 +56,35 @@ export class StudentformComponent implements OnInit {
         this.studentForm.controls.degree.dirty ||
         this.studentForm.controls.city.dirty
       ) {
-        this.studentService.updateStudent(data).subscribe(res => {
-          console.log(res);
-          this.parent.refreshStudentsList();
-          this.modalService.dismissAll();
-        });
+        this.studentService.updateStudent(data).subscribe(
+          res => {
+            this.toastr.showSuccess("Record successfully updated...");
+            this.parent.refreshStudentsList();
+            this.modalService.dismissAll();
+          },
+          error => {
+            this.toastr.showError(error);
+            return console.log(error);
+          }
+        );
       } else {
         this.error = "Nothing has changed...";
         this.StudentFormError = true;
       }
     } else {
       //Create new student record
-      this.studentService.createStudent(data).subscribe(res => {
-        this.studentForm.reset();
-        console.log(res);
-        this.parent.refreshStudentsList();
-        this.modalService.dismissAll();
-      });
+      this.studentService.createStudent(data).subscribe(
+        res => {
+          this.studentForm.reset();
+          this.toastr.showSuccess("New record added...");
+          this.parent.refreshStudentsList();
+          this.modalService.dismissAll();
+        },
+        error => {
+          this.toastr.showError(error);
+          return console.log(error);
+        }
+      );
     }
   }
 }

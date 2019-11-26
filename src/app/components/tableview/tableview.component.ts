@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { StudentService } from "../../services/student.service";
 import { StudentData } from "../../models/student.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: "app-tableview",
@@ -15,7 +16,8 @@ export class TableviewComponent implements OnInit {
   constructor(
     private _router: Router,
     public studentService: StudentService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: NotificationService
   ) {
     this.config = {
       itemsPerPage: 10,
@@ -45,10 +47,11 @@ export class TableviewComponent implements OnInit {
     if (confirm("Are you sure to delete this record ?") === true) {
       this.studentService.deleteStudent(student._id).subscribe(
         res => {
-          console.log(res);
+          this.toastr.showSuccess("Record successfully deleted...");
           this.refreshStudentsList();
         },
         error => {
+          this.toastr.showError(error);
           return console.log(error);
         }
       );
