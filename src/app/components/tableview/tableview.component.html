@@ -1,7 +1,6 @@
 <div class="container-fluid container-table">
+  <button (click)="openLg(content)" class="btn btn-secondary" style="margin-bottom: 10px; margin-right: 30px;">Add</button>
   <input type="text" id="searchField" placeholder="Search" [(ngModel)]="searchText" />
-  <button (click)="openLg(content)" class="btn btn-secondary" style="margin: 10px;">Add</button>
-  <button (click)="logout()" class="btn btn-primary" style="float: right; margin: 10px;">Logout</button>
   <table class="table table-striped">
     <thead>
       <tr>

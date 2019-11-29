@@ -14,7 +14,6 @@ export class TableviewComponent implements OnInit {
   config: any;
 
   constructor(
-    private _router: Router,
     public studentService: StudentService,
     private modalService: NgbModal,
     private toastr: NotificationService
@@ -62,14 +61,9 @@ export class TableviewComponent implements OnInit {
     this.config.currentPage = event;
   }
 
-  logout() {
-    localStorage.removeItem("token");
-    this._router.navigate(["/"]);
-  }
-
   openLg(content) {
     this.resetSelectedStudent();
-    this.modalService.open(content, { size: "lg" });
+    this.modalService.open(content, { size: "lg", centered:true });
   }
 
   editStudent(content, student: StudentData) {
@@ -81,7 +75,7 @@ export class TableviewComponent implements OnInit {
     this.studentService.selectedStudent.roll_no = student.roll_no;
     this.studentService.selectedStudent.degree = student.degree;
 
-    this.modalService.open(content, { size: "lg" });
+    this.modalService.open(content, { size: "lg", centered:true });
   }
 
   resetSelectedStudent() {

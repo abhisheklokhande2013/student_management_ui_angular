@@ -16,6 +16,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+import { AboutComponent } from './components/about/about.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -33,7 +34,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     AppComponent,
     LoginComponent,
     TableviewComponent,
-    StudentformComponent
+    StudentformComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
